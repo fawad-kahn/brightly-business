@@ -1,0 +1,616 @@
+/* =============================================
+   CSS VARIABLES (colors, fonts, spacing)
+   ============================================= */
+:root {
+  --color-primary: #2f6fed;      /* main blue */
+  --color-primary-dark: #1f56c9; /* darker blue for text on white */
+  --color-light-blue: #eaf1ff;   /* light blue background */
+  --color-white: #ffffff;
+  --color-text: #333333;
+  --color-text-light: #6b7280;
+  --color-border: #e5e9f2;
+
+  --font-main: 'Poppins', Arial, sans-serif;
+
+  --radius: 10px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  --container-width: 1140px;
+
+  /* how long hover/transition effects take */
+  --transition: 0.25s ease;
+}
+
+/* =============================================
+   RESET / BASE STYLES
+   ============================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  line-height: 1.6;
+  background-color: var(--color-white);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* =============================================
+   SIMPLE ANIMATIONS
+   ============================================= */
+
+/* Fades content in while sliding it up slightly */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reusable container to center content and add side padding */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Reusable section heading style */
+.section__heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+.section__heading h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.section__heading p {
+  color: var(--color-text-light);
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  cursor: pointer;
+  /* smoothly animate hover changes */
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition),
+    box-shadow var(--transition);
+}
+
+/* Lift every button slightly on hover */
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 6px 16px rgba(47, 111, 237, 0.35);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn--outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--small {
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  background-color: var(--color-light-blue);
+  color: var(--color-primary-dark);
+}
+
+.btn--small:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  transition: opacity var(--transition);
+}
+
+.logo:hover {
+  opacity: 0.75;
+}
+
+.nav__list {
+  display: flex;
+  gap: 30px;
+}
+
+.nav__list li {
+  position: relative;
+}
+
+.nav__list a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.nav__list a:hover {
+  color: var(--color-primary);
+}
+
+/* Small underline that grows in under the link on hover */
+.nav__list a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width var(--transition);
+}
+
+.nav__list a:hover::after {
+  width: 100%;
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.hero {
+  background-color: var(--color-light-blue);
+  padding: 80px 0;
+}
+
+.hero__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero__text {
+  flex: 1;
+  max-width: 550px;
+  /* fade + slide up when the page loads */
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero__text h1 {
+  font-size: 2.6rem;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.hero__text p {
+  color: var(--color-text-light);
+  margin-bottom: 30px;
+  font-size: 1.05rem;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.hero__image {
+  flex: 1;
+  max-width: 480px;
+  /* fade + slide up, slightly after the text */
+  animation: fadeInUp 0.8s ease both;
+  animation-delay: 0.2s;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.hero__image img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.hero__image:hover img {
+  transform: scale(1.04);
+}
+
+/* =============================================
+   CARD STYLES (used by Categories and Services)
+   ============================================= */
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px 25px;
+  text-align: center;
+  /* smoothly animate the hover lift */
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+/* Lift the whole card and deepen its shadow on hover */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card__icon {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 18px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-light-blue);
+  border-radius: 50%;
+  color: var(--color-primary);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+/* Icon swaps to the brand color when its card is hovered */
+.card:hover .card__icon {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--color-text-light);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+/* =============================================
+   CATEGORIES SECTION
+   ============================================= */
+.categories {
+  padding: 80px 0;
+}
+
+.categories__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* =============================================
+   ABOUT SECTION
+   ============================================= */
+.about {
+  background-color: var(--color-light-blue);
+  padding: 80px 0;
+}
+
+.about__inner {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.about__image {
+  flex: 1;
+  max-width: 480px;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.about__image img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.about__image:hover img {
+  transform: scale(1.04);
+}
+
+.about__text {
+  flex: 1;
+}
+
+.about__text h2 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.about__text p {
+  color: var(--color-text-light);
+  margin-bottom: 25px;
+}
+
+/* =============================================
+   SERVICES SECTION
+   ============================================= */
+.services {
+  padding: 80px 0;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* =============================================
+   CONTACT SECTION
+   ============================================= */
+.contact {
+  background-color: var(--color-light-blue);
+  padding: 80px 0;
+}
+
+.contact__form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--color-white);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form__group {
+  margin-bottom: 20px;
+}
+
+.form__group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form__group input,
+.form__group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* Highlight the field the user is currently typing in */
+.form__group input:focus,
+.form__group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+}
+
+.form__group textarea {
+  resize: vertical;
+}
+
+.contact__form .btn {
+  width: 100%;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background-color: #16213e;
+  color: #cfd6e6;
+  padding: 60px 0 20px 0;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.logo--footer {
+  color: var(--color-white);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.footer__brand p {
+  color: #9aa4bd;
+  font-size: 0.9rem;
+}
+
+.footer__links h4,
+.footer__social h4 {
+  color: var(--color-white);
+  margin-bottom: 18px;
+  font-size: 1rem;
+}
+
+.footer__links ul li {
+  margin-bottom: 10px;
+}
+
+.footer__links ul li a {
+  color: #9aa4bd;
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.footer__links ul li a:hover {
+  color: var(--color-white);
+}
+
+.social__icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social__icons a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.social__icons a:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+.social__icons svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer__copy {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: #9aa4bd;
+}
+
+/* =============================================
+   RESPONSIVE STYLES
+   ============================================= */
+
+/* Tablet view */
+@media (max-width: 900px) {
+
+  .categories__grid,
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero__text h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 650px) {
+
+  .header__inner {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero__inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero__buttons {
+    justify-content: center;
+  }
+
+  .hero__text,
+  .hero__image {
+    max-width: 100%;
+  }
+
+  .about__inner {
+    flex-direction: column;
+  }
+
+  .categories__grid,
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social__icons {
+    justify-content: center;
+  }
+
+  .contact__form {
+    padding: 25px;
+  }
+}
